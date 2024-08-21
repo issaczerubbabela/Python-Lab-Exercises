@@ -36,12 +36,13 @@ def remove_from_cart(cart, product_id, quantity):
     else:
         print("Product not in cart")
 
-def checkout(cart, site):
+def checkout(cart, site, last_purchase):
     total = 0
     for product_id, details in cart.items():
         if site[product_id]['quantity'] >= details['quantity']:
             site[product_id]['quantity'] -= details['quantity']
             total += details['quantity'] * details['price']
+            last_purchase[product_id] = details
         else:
             print(f"Not enough stock for {details['product_name']}")
     cart.clear()
@@ -50,6 +51,7 @@ def checkout(cart, site):
 def main():
     site = {}
     cart = {}
+    last_purchase = {}
     while True:
         print("Ecommerce Website")
         print("\tWho are you?:\n\
@@ -86,7 +88,7 @@ def main():
                     quantity = int(input("enter the quantity of the product to be removed: "))
                     remove_from_cart(cart, product_id, quantity)
                 elif customer_choice == 4:
-                    checkout(cart, site)
+                    checkout(cart, site, last_purchase)
                 elif customer_choice == 5:
                     break
                 else:
@@ -110,7 +112,9 @@ def main():
                 payment_role = int(input("Enter(1-2): "))
                 if payment_role == 1:
                     print("View Payments")
-                    print("No payments yet")
+                    print("{:15}{:30}{:10}{:20}".format("Product ID", "Product Name", "Quantity", "Price"))
+                    for product_id, details in last_purchase.items():
+                        print("{:15}{:30}{:<10}{:<20.2f}".format(product_id, details['product_name'], details['quantity'], details['price'] * details['quantity']))
                 elif payment_role == 2:
                     print("Update Payments")
                     print("No payments to update")
@@ -123,7 +127,9 @@ def main():
                 shipping_role = int(input("Enter(1-2): "))
                 if shipping_role == 1:
                     print("View Shipping")
-                    print("No shipping yet")
+                    print("{:15}{:30}{:10}{:20}".format("Product ID", "Product Name", "Quantity", "Price"))
+                    for product_id, details in last_purchase.items():
+                        print("{:15}{:30}{:<10}{:<20.2f}".format(product_id, details['product_name'], details['quantity'], details['price'] * details['quantity']))
                 elif shipping_role == 2:
                     print("Update Shipping")
                     print("No shipping to update")
