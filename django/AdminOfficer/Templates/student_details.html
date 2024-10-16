@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html lang='en'>
+<head>
+	<title>Insert Student Details</title>
+	<meta charset='UTF-8'>
+</head>
+<body>
+	<h2>Enter Student Details</h2>
+	<form method='post' action="{% url 'process_student_details' %}">
+	{% csrf_token %}
+	<label for="name">Enter Student Name<input type="text" name="name">
+</body>
+</html>
