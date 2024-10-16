@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<title>Insert Plant Details</title>
+	</head>
+	<body>
+		<h2>Plant Details</h2>
+		<form method="post" action="{% url 'process_plant_details' %}">
+			{% csrf_token %}
+			<label for="plant_name">Enter the plant name:<input type="text" name="plant_name">
+			<br>
+			<label for="plant_type">Enter the plant type:<input type="text" name="plant_type">
+			<br>
+			<label for="plant_price">Enter the plant price:<input type="number" name="plant_price">
+			<br>
+			<label for="plant_benefits">Enter the plant benefits:<input type="text" name="plant_benefits">
+			<input type="submit" value="Enter Details">
+		</form>
+	</body>
+</html>
