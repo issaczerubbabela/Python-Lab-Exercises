@@ -9,5 +9,13 @@
 	<form method='post' action="{% url 'process_student_details' %}">
 	{% csrf_token %}
 	<label for="name">Enter Student Name<input type="text" name="name">
+	<br>
+	<label for="regno">Enter Student Register Number<input type="number" name="regno">
+	<br>
+	<label for="address">Enter Student Address<input type="text" name="address">
+	<br>
+	<label for="number">Enter Student Contact Number<input type="number" name="number">
+	<br>
+	
 </body>
 </html>
